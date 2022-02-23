@@ -1,0 +1,73 @@
+﻿@model WealthManager.Core.Model.AccountViewModel
+
+@{
+    ViewData["Title"] = "AddClientAccount";
+}
+
+<h4>Add Client Account</h4>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddClientAccount">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="ClientID" type="hidden" value="@User.Claims.FirstOrDefault(x => x.Type.Equals("userId", StringComparison.OrdinalIgnoreCase))?.Value" />
+                <label asp-for="AccountId" class="control-label"></label>
+                <input asp-for="AccountId" class="form-control" />
+                <span asp-validation-for="AccountId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustodianId" class="control-label"></label>
+                <input asp-for="CustodianId" class="form-control" />
+                <span asp-validation-for="CustodianId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustodianName" class="control-label"></label>
+                <input asp-for="CustodianName" class="form-control" />
+                <span asp-validation-for="CustodianName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegisteredName" class="control-label"></label>
+                <input asp-for="RegisteredName" class="form-control" />
+                <span asp-validation-for="RegisteredName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustodianAccountNumber" class="control-label"></label>
+                <input asp-for="CustodianAccountNumber" class="form-control" />
+                <span asp-validation-for="CustodianAccountNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MarketValue" class="control-label"></label>
+                <input asp-for="MarketValue" class="form-control" />
+                <span asp-validation-for="MarketValue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProgramId" class="control-label"></label>
+                <input asp-for="ProgramId" class="form-control" />
+                <span asp-validation-for="ProgramId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProgramName" class="control-label"></label>
+                <input asp-for="ProgramName" class="form-control" />
+                <span asp-validation-for="ProgramName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsClosed" class="control-label"></label>
+                <input asp-for="IsClosed" class="form-control" />
+                <span asp-validation-for="IsClosed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to details", "ClientDetails", new { userName = User.Identity.Name })
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

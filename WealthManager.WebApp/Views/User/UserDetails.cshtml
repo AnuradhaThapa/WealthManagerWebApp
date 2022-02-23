@@ -1,0 +1,90 @@
+﻿@model WealthManager.Core.Model.UserDisplayViewModel
+
+@{
+    ViewData["Title"] = "UserDetails";
+}
+
+<h5>Welcome @Model.FirstName @Model.LastName</h5>
+<h4>User Details</h4>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RoleType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RoleType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PhoneNo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HasActiveRole)
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                if (Model.HasActiveRole != true)
+                {
+                    <span>No</span>
+                }
+                else
+                {
+                    <span>Yes</span>
+                }
+            }
+
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit Your Details", "EditUser", new { userName = User.Identity.Name })
+    @if (Model.RoleType == "Admin")
+    {
+        @Html.ActionLink("View Agent Details", "AgentsDetails")
+        @Html.ActionLink("Add New Agent", "AddAgent")
+    }
+    else
+    {
+        @Html.ActionLink("View Client Details", "ClientsDetailsByAgent", new { userId = Model.UserId })
+        @Html.ActionLink("Add New Client", "AddClient")
+    }
+</div>

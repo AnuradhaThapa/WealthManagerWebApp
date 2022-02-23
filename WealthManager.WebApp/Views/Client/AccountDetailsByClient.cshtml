@@ -1,0 +1,91 @@
+﻿@model IEnumerable<WealthManager.Core.Model.AccountViewModel>
+
+@{
+    ViewData["Title"] = "AccountDetailsByClient";
+}
+
+<h4>Client Account Details</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustodianId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustodianName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegisteredName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustodianAccountNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MarketValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProgramId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProgramName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsClosed)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustodianId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustodianName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegisteredName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustodianAccountNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MarketValue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProgramId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProgramName)
+                </td>
+                <td>
+                    @{
+                        if (item.IsClosed != true)
+                        {
+                            <span>No</span>
+                        }
+                        else
+                        {
+                            <span>Yes</span>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    <tr>
+        @{ 
+            @Html.ActionLink("Back to details", "ClientDetails", new { userName = User.Identity.Name })
+         }
+
+    </tr>
+    </tbody>
+</table>

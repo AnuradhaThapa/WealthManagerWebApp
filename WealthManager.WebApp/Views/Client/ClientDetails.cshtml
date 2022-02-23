@@ -1,0 +1,101 @@
+﻿@model WealthManager.Core.Model.ClientViewModel
+@using WealthManager.Core.Enum
+@using WealthManager.Core.ExtensionClass
+
+@{
+    ViewData["Title"] = "ClientDetails";
+}
+
+<h5>Welcome @Model.FirstName @Model.LastName</h5>
+<h4>User Details</h4>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ClientType)
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                var clientType = Extensions.GetEnumDisplayName((ClientType)Model.ClientType);
+            }
+            <span>
+                @clientType
+            </span>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RoleType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RoleType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PhoneNo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HasActiveRole)
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                if (Model.HasActiveRole != true)
+                {
+                    <span>No</span>
+                }
+                else
+                {
+                    <span>Yes</span>
+                }
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AgentId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AgentId)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("EditDetails", "EditClient", new { userName = User.Identity.Name })
+    @Html.ActionLink("View Account Details", "AccountDetailsByClient", new { userId = Model.UserId })
+    @Html.ActionLink("Add New Account", "AddClientAccount")
+</div>
