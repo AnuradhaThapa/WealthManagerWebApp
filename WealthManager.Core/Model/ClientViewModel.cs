@@ -1,4 +1,5 @@
 ﻿using DataAnnotationsExtensions;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -26,8 +27,7 @@ namespace WealthManager.Core.Model
         [RegularExpression(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", ErrorMessage = "Invalid email format")]
         public string Email { get; set; }
         [Required]
-        [Integer(ErrorMessage = "Phone no needs to be an integer")]
-        [StringLength(10, MinimumLength = 10, ErrorMessage = "The field PhoneNo must be a string with a length of 10 digits")]
+        [Remote("ValidatePhone", "Validation")]
         public string PhoneNo { get; set; }
 
         [Display(Name = "IsActive")]
